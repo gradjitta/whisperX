@@ -235,6 +235,10 @@ def align(
                 blank_id = code
 
         trellis = get_trellis(emission, tokens, blank_id)
+        if trellis is None:
+            print("trellis error, resorting to original")
+            aligned_segments.append(aligned_seg)
+            continue
         path = backtrack(trellis, emission, tokens, blank_id)
 
         if path is None:
